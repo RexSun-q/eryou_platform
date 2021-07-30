@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.eryou.mapper.ParentIdentifierMapper">
+
+    <insert id="add" parameterType="com.eryou.entity.ParentIdentifier">
+        insert into parent_identifier (parent_id, card_id) values(#{parentId}, #{cardId})
+    </insert>
+
+    <delete id="deleteById">
+        delete from parent_identifier where student_id=#{parentId}
+    </delete>
+
+    <update id="update" parameterType="com.eryou.entity.ParentIdentifier">
+        UPDATE parent_identifier SET parent_id=#{parentId}, card_id=#{cardId} WHERE parent_id=#{parentId}
+    </update>
+
+    <select id = "queryAll" resultMap="piMap">
+        SELECT * FROM parent_identifier
+    </select>
+
+    <select id="queryById" resultMap="piMap">
+        select * from parent_identifier where parent_id = #{id}
+    </select>
+
+    <resultMap id="piMap" type="com.eryou.entity.ParentIdentifier">
+        <id property="parentId" column="parent_id"></id>
+        <result property="cardId" column="card_id"></result>
+    </resultMap>
+
+</mapper>

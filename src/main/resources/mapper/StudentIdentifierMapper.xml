@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.eryou.mapper.StudentIdentifierMapper">
+
+    <insert id="add" parameterType="com.eryou.entity.StudentIdentifier">
+        insert into student_identifier (student_id, card_id) values(#{studentId}, #{cardId})
+    </insert>
+
+    <delete id="deleteById">
+        delete from student_identifier where student_id=#{studentId}
+    </delete>
+
+    <update id="update" parameterType="com.eryou.entity.StudentIdentifier">
+        UPDATE student_identifier SET student_id=#{studentId}, card_id=#{cardId} WHERE student_id=#{studentId}
+    </update>
+
+    <select id = "queryAll" resultMap="siMap">
+        SELECT * FROM student_identifier
+    </select>
+
+    <select id="queryById" resultMap="siMap">
+        select * from student_identifier where student_id = #{id}
+    </select>
+    
+    <resultMap id="siMap" type="com.eryou.entity.StudentIdentifier">
+        <id property="studentId" column="student_id"></id>
+        <result property="cardId" column="card_id"></result>
+    </resultMap>
+
+</mapper>
