@@ -68,7 +68,15 @@ spring:
       filter:
         stat:
           log-slow-sql: true
----
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+
 mybatis:
   type-aliases-package: com.eryou.entity
   mapper-locations: classpath:mapper/*.xml
+
+
