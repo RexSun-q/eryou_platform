@@ -1,10 +1,14 @@
 package com.eryou;
 
+import com.eryou.entity.Parent;
 import com.eryou.entity.StudentIdentifier;
+import com.eryou.mapper.ParentMapper;
 import com.eryou.mapper.StudentMapper;
+import com.eryou.util.PageUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -48,5 +52,17 @@ class EryouPlatformApplicationTests {
 
     }
 
+    @Autowired
+    ParentMapper parentMapper;
+    @Test
+    void testParent() {
+
+       Parent parent = new Parent();
+       parent.setChildId(12);
+       parent.setParentName("面膜的爸爸");
+       parent.setParentGender("男");
+       parent.setCategoryId(0);
+       parentMapper.add(parent);
+    }
 
 }
