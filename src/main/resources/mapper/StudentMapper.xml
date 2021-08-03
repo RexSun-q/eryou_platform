@@ -3,6 +3,40 @@
 
 <mapper namespace= "com.eryou.mapper.StudentMapper">
 
+    <select id="queryAll" resultMap="studentMap">
+        select * from student
+    </select>
 
+    <select id="queryById" resultMap="studentMap">
+        select * from student where student_id=#{id}
+    </select>
+
+    <insert id="add" parameterType="com.eryou.entity.Student">
+        insert into student (student_name, student_gender, student_birth) values(#{studentName}, #{studentGender}, #{birth})
+    </insert>
+
+    <select id="countAll" resultType="Integer">
+        select count(1) from student
+    </select>
+
+    <select id="countMale" resultType="Integer">
+        select count(1) from student where student_gender="男"
+    </select>
+
+    <select id="countFemale" resultType="Integer">
+        select count(1) from student where student_gender="女"
+    </select>
+
+    <select id="list" resultMap="studentMap">
+        select * from student
+    </select>
+
+
+    <resultMap id="studentMap" type="com.eryou.entity.Student">
+        <id property="studentId" column="student_id"></id>
+        <result property="studentName" column="student_name"></result>
+        <result property="studentGender" column="student_gender"></result>
+        <result property="birth" column="student_birth"></result>
+    </resultMap>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.eryou;
 
 import com.eryou.entity.StudentIdentifier;
+import com.eryou.mapper.StudentMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,9 +19,12 @@ import java.util.List;
 class EryouPlatformApplicationTests {
     @Autowired
     JdbcTemplate template;
+    @Autowired
+    StudentMapper studentMapper;
 
     @Test
     void contextLoads() {
+        // 测试连接
        String sql = "select * from student_identifier";
         List<StudentIdentifier> list = template.query(sql, new RowMapper<StudentIdentifier>() {
             @Override
@@ -36,5 +40,13 @@ class EryouPlatformApplicationTests {
             System.out.println(si);
         }
     }
+
+    @Test
+    void test01() {
+        Integer num = studentMapper.countAll();
+        System.out.println(num);
+
+    }
+
 
 }

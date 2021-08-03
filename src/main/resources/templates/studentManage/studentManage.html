@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>安顺市第二幼儿园新生报名平台|管理</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
+    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/footable/footable.core.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav::navigation"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="border-bottom" th:include="header :: headerTop"></div>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>学生信息</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-hover no-margins" data-page-size="20">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>出生日期</th>
+                            <th>现居住地</th>
+                            <th>户口所在地</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="st : ${list}">
+                                <td th:text="${st.studentId}">1</td>
+                                <td th:text="${st.studentName}">学生1</td>
+                                <td th:text="${st.studentGender}">男</td>
+                                <td th:text="${st.birth}"><i class="fa date"></i> 1996/12/30</td>
+                                <td>Samantha</td>
+                                <td class="text-navy"> <i class="fa fa-level-up"></i> 24% </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="footer" th:include="footer :: copyright"></div>
+    </div>
+</div>
+<!-- Mainly scripts -->
+<script th:src="@{/js/jquery-2.1.1.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Peity -->
+<script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
+<script th:src="@{/js/demo/peity-demo.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script th:src="@{/js/inspinia.js}"></script>
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+
+<!-- jQuery UI -->
+<script th:src="@{/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
+
+<!-- Jvectormap -->
+<script th:src="@{/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js}"></script>
+<script th:src="@{/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+
+<!-- EayPIE -->
+<script th:src="@{/js/plugins/easypiechart/jquery.easypiechart.js}"></script>
+
+<!-- Sparkline -->
+<script th:src="@{/js/plugins/sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Sparkline demo data  -->
+<script th:src="@{/js/demo/sparkline-demo.js}"></script>
+</body>
+
+</html>

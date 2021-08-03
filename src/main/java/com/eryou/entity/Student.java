@@ -16,17 +16,35 @@ public class Student {
     // 学生出生日期
     private Date birth;
 
-    // 一级区域
-    private Integer city;
+    public Integer getStudentId() {
+        return studentId;
+    }
 
-    // 二级区域
-    private Integer district;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
 
-    // 三级区域
-    private Integer area;
+    public String getStudentName() {
+        return studentName;
+    }
 
-    // 住址
-    private String address;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
+    public String getStudentGender() {
+        return studentGender;
+    }
 
+    public void setStudentGender(String studentGender) {
+        this.studentGender = studentGender;
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
 }
