@@ -3,7 +3,6 @@ package com.eryou.controller;
 import com.eryou.entity.Parent;
 import com.eryou.entity.Student;
 import com.eryou.entity.StudentIdentifier;
-import com.eryou.info.SignInInfo;
 import com.eryou.mapper.ParentIdentifierMapper;
 import com.eryou.mapper.ParentMapper;
 import com.eryou.mapper.StudentIdentifierMapper;

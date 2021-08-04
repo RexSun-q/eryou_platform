@@ -3,6 +3,7 @@ package com.eryou.controller;
 import com.eryou.entity.Admin;
 import com.eryou.mapper.AdminMapper;
 import com.eryou.mapper.StudentMapper;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +53,13 @@ public class AdminController {
         model.addAttribute("boysNum", studentMapper.countMale());
         model.addAttribute("girlsNum", studentMapper.countFemale());
         return "dashboard";
+    }
+
+    @GetMapping("/admin/logout")
+    public String logOut(Model model, HttpSession session) {
+        session.removeAttribute("admin");
+        model.addAttribute("error", "退出成功");
+        return "login";
     }
 
 }
