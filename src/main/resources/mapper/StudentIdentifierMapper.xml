@@ -3,8 +3,8 @@
 
 <mapper namespace= "com.eryou.mapper.StudentIdentifierMapper">
 
-    <insert id="add" parameterType="com.eryou.entity.StudentIdentifier">
-        insert into student_identifier (student_id, card_id) values(#{studentId}, #{cardId})
+    <insert id="create">
+        insert into student_identifier (card_id) values(#{cardId})
     </insert>
 
     <delete id="deleteById">
@@ -21,6 +21,10 @@
 
     <select id="queryById" resultMap="siMap">
         select * from student_identifier where student_id = #{id}
+    </select>
+
+    <select id="queryByCardId" resultMap="siMap">
+        select * from student_identifier where card_id = #{id}
     </select>
     
     <resultMap id="siMap" type="com.eryou.entity.StudentIdentifier">

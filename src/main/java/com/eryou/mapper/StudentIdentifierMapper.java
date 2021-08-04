@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface StudentIdentifierMapper {
 
-    void add(StudentIdentifier si);
+    void create(String cardId);
 
     void deleteById(int studentId);
 
@@ -18,5 +18,7 @@ public interface StudentIdentifierMapper {
     List<StudentIdentifier> queryAll();
 
     StudentIdentifier queryById(int studentId);
+
+    StudentIdentifier queryByCardId(String cardId);
 
 }

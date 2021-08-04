@@ -3,8 +3,8 @@
 
 <mapper namespace= "com.eryou.mapper.ParentIdentifierMapper">
 
-    <insert id="add" parameterType="com.eryou.entity.ParentIdentifier">
-        insert into parent_identifier (parent_id, card_id) values(#{parentId}, #{cardId})
+    <insert id="create" parameterType="String">
+        insert into parent_identifier (card_id) values(#{cardId})
     </insert>
 
     <delete id="deleteById">
@@ -21,6 +21,10 @@
 
     <select id="queryById" resultMap="piMap">
         select * from parent_identifier where parent_id = #{id}
+    </select>
+
+    <select id="queryByCardId" resultType="Integer">
+        select parent_id from parent_identifier where card_id = #{id}
     </select>
 
     <resultMap id="piMap" type="com.eryou.entity.ParentIdentifier">

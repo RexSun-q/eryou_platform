@@ -14,54 +14,37 @@
     <link th:href="@{/css/animate.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
+    <!-- Sweet Alert -->
+    <link th:href="@{/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
 </head>
 
 <body class="gray-bg">
 
 <div class="middle-box text-center loginscreen   animated fadeInDown">
     <div>
-        <div>
-            <h2 class="logo-name">MX</h2>
-        </div>
-        <h3>注册</h3>
-        <p>Create account to see it in action.</p>
-        <form class="m-t" role="form" th:action="@{/apply/apply}">
+        <h3>信息登记</h3>
+        <p>按照提示填写学生及其家长信息</p>
+        <form class="m-t" role="form" action="apply" method="post">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="学生姓名" required=""/>
+                <input type="text" class="form-control" name="studentName" placeholder="学生姓名" required=""/>
+                <input type="text" class="form-control" name="studentIdentifier" placeholder="学生身份证号码" required=""/>
+                <input type="text" class="form-control" name="studentGender" placeholder="学生性别" required=""/>
+                <input type="date" class="form-control" name="studentBirth" placeholder="学生出生日期" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="学生性别" required=""/>
+                <input type="text" class="form-control" name="fatherName" placeholder="父亲姓名" required=""/>
+                <input type="text" class="form-control" name="fatherIdentifier" placeholder="父亲身份证号码" required=""/>
             </div>
             <div class="form-group">
-                <input type="date" class="form-control" placeholder="出生日期" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="学生身份证号码" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="父亲姓名" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="date" class="form-control" placeholder="出生日期" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="身份证号码" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="母亲姓名" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="date" class="form-control" placeholder="出生日期" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="id" placeholder="身份证号码" required=""/>
+                <input type="text" class="form-control" name="motherName" placeholder="母亲姓名" required=""/>
+                <input type="text" class="form-control" name="motherIdentifier" placeholder="母亲身份证号码" required=""/>
             </div>
             <div class="form-group">
                 <div class="checkbox i-checks">
                     <label> <input type="checkbox" name="agree"/><i></i>同意《安顺市第二幼儿园新生报名规则》</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+            <button type="submit" class="btn btn-primary block full-width m-b">提交</button>
         </form>
     </div>
 </div>
@@ -71,6 +54,9 @@
 <script src="js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="js/plugins/iCheck/icheck.min.js"></script>
+<!-- Sweet alert -->
+<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}"></script>
+
 <script>
     $(document).ready(function(){
         $('.i-checks').iCheck({
@@ -79,7 +65,6 @@
         });
     });
 </script>
-</body>
 
 <script th:inline="javascript">
     var error = [[${error}]];
@@ -93,5 +78,6 @@
     });
 
 </script>
+</body>
 
 </html>

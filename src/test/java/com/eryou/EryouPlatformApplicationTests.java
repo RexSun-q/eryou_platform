@@ -17,6 +17,9 @@ import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -63,6 +66,19 @@ class EryouPlatformApplicationTests {
        parent.setParentGender("男");
        parent.setCategoryId(0);
        parentMapper.add(parent);
+    }
+
+    @Test
+    void test02() {
+        String birth = "1999-01-02";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(birth);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(date);
     }
 
 }

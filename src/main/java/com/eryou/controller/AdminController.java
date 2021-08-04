@@ -23,14 +23,6 @@ public class AdminController {
         return "login";
     }
 
-    /**
-     *
-     * @param email
-     * @param password
-     * @param model
-     * @param httpSession
-     * @return
-     */
     @PostMapping("/admin/login")
     public String loginPost(@RequestParam("em") String email,
                             @RequestParam("pwd") String password,

@@ -4,8 +4,8 @@
 <mapper namespace= "com.eryou.mapper.ParentMapper">
 
     <insert id="add" parameterType="com.eryou.entity.Parent">
-        insert into parent (parent_name, parent_gender, child_id, category_id)
-        values (#{parentName}, #{parentGender}, #{childId}, #{categoryId})
+        insert into parent (parent_id, parent_name, parent_gender, child_id, category_id)
+        values (#{parentId}, #{parentName}, #{parentGender}, #{childId}, #{categoryId})
     </insert>
 
     <select id="queryByStudentId" resultMap="parentMap">

@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface ParentIdentifierMapper {
 
-    void add(ParentIdentifier pi);
+    void create(String cardId);
 
     void deleteById(int parentId);
 
@@ -18,4 +18,7 @@ public interface ParentIdentifierMapper {
     List<ParentIdentifier> queryAll();
 
     ParentIdentifier queryById(int parentId);
+
+    Integer queryByCardId(String cardId);
+
 }
