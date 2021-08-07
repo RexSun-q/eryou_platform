@@ -1,25 +1,23 @@
 package com.eryou.controller;
 
+import com.alibaba.druid.support.json.JSONParser;
 import com.eryou.entity.Parent;
 import com.eryou.entity.Student;
 import com.eryou.entity.StudentIdentifier;
-import com.eryou.mapper.ParentIdentifierMapper;
-import com.eryou.mapper.ParentMapper;
-import com.eryou.mapper.StudentIdentifierMapper;
-import com.eryou.mapper.StudentMapper;
+import com.eryou.mapper.*;
 import com.eryou.util.DateUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Map;
+import java.util.Random;
 
 @Controller
 public class ApplyController {
@@ -31,6 +29,8 @@ public class ApplyController {
     ParentIdentifierMapper parentIdentifierMapper;
     @Autowired
     ParentMapper parentMapper;
+    @Autowired
+    ResultMapper resultMapper;
 
     @GetMapping("/apply")
     public String apply() {
@@ -100,5 +100,51 @@ public class ApplyController {
             model.addAttribute("error", "请同意使用规则");
             return "apply/apply";
         }
+    }
+
+    @ResponseBody
+    @PostMapping("/addInfo")
+    public Integer addInfo(@RequestBody String data) {
+        int[] status = {0, 1};
+        JSONParser jsonParser = new JSONParser(data);
+        Map<String, Object> map = jsonParser.parseMap();
+        String studentCardId = (String) map.get("studentCardId");
+        Integer result = resultMapper.getResult(studentCardId);
+        if (result == null) {
+            Random random = new Random();
+            return status[random.nextInt(1)];
+        }
+
+        // 检查学生
+        StudentIdentifier identifier;
+        identifier = studentIdentifierMapper.queryByCardId(studentCardId);
+        if (identifier != null) {
+            return 2;
+        }
+
+        // 创建学生
+        studentIdentifierMapper.create(studentCardId);
+        identifier = studentIdentifierMapper.queryByCardId(studentCardId);
+
+        Student student = new Student();
+        student.setStudentId(identifier.getStudentId());
+        student.setStudentName((String) map.get("studentName"));
+        student.setStudentGender((String) map.get("studentIndex"));
+        student.setBirth(DateUtil.inDate((String) map.get("birthday")));
+        studentMapper.add(student);
+
+        // 创建家长
+        String parentCardId = (String) map.get("parentCardId");
+        parentIdentifierMapper.create(parentCardId);
+        Integer fatherId = parentIdentifierMapper.queryByCardId(parentCardId);
+        Parent father = new Parent();
+        father.setParentId(fatherId);
+        father.setParentGender(((String)map.get("parentIndex")).equals("父亲") ? "男" : "女");
+        father.setParentName((String) map.get("parentName"));
+        father.setChildId(identifier.getStudentId());
+        father.setCategoryId(0);
+        parentMapper.add(father);
+
+        return 3;
     }
 }
